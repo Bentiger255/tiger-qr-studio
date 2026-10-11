@@ -1,18 +1,21 @@
-/* Layout repair layer: loaded after the existing styles so the live component
-   class names, shared shell, page widths, mobile layouts and footer agree. */
+/* Page-specific layout corrections.
+   Selectors below are taken from the current JSX in Dashboard, CreateQR,
+   HowToUse, MyQRCodes, Settings, Templates and Analytics. */
 
 :root {
-  --layout-gutter: clamp(16px, 3.2vw, 42px);
+  --layout-gutter: clamp(16px, 3vw, 36px);
 }
 
-html, body, #root {
+html,
+body,
+#root {
   width: 100%;
   min-width: 320px;
   min-height: 100%;
 }
 
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 #root,
@@ -27,10 +30,10 @@ body {
 
 .app-shell-main {
   display: flex;
-  flex: 1 1 auto;
+  flex: 1 1 0;
   flex-direction: column;
+  width: auto;
   min-width: 0;
-  width: calc(100% - var(--sidebar-width));
   min-height: 100vh;
   margin-left: var(--sidebar-width);
 }
@@ -39,12 +42,14 @@ body {
   display: flex;
   flex: 1 0 auto;
   flex-direction: column;
-  min-width: 0;
   width: 100%;
+  min-width: 0;
   min-height: 0;
 }
 
-.app-shell-content > * {
+.app-shell-content > *,
+.app-shell-content > .page,
+.app-shell-content > main {
   min-width: 0;
   max-width: 100%;
 }
@@ -58,7 +63,6 @@ body {
 .create-page,
 .workspace-page,
 .how-to-page {
-  width: min(100% - 2 * var(--layout-gutter), 1240px);
   min-width: 0;
   margin-right: auto;
   margin-left: auto;
@@ -67,13 +71,11 @@ body {
 .dashboard-page,
 .workspace-page,
 .how-to-page {
-  padding-top: clamp(22px, 3vw, 38px);
-  padding-bottom: clamp(28px, 4vw, 52px);
+  width: min(calc(100% - 2 * var(--layout-gutter)), 1240px);
 }
 
 .create-page {
-  padding-top: clamp(20px, 2.8vw, 32px);
-  padding-bottom: clamp(28px, 4vw, 48px);
+  width: min(calc(100% - 2 * var(--layout-gutter)), 1360px);
 }
 
 .dashboard-page *,
@@ -108,7 +110,39 @@ body {
   overflow-wrap: break-word;
 }
 
-/* Create page uses create-workspace-panel, not the older create-column names. */
+/* Dashboard */
+.dashboard-hero {
+  min-width: 0;
+}
+
+.dashboard-hero-content {
+  min-width: 0;
+}
+
+.stats-grid,
+.quick-create-grid,
+.dashboard-two-column {
+  min-width: 0;
+}
+
+.quick-create-card {
+  min-width: 0;
+}
+
+.quick-create-content {
+  overflow-wrap: anywhere;
+}
+
+.recent-item {
+  min-width: 0;
+}
+
+.recent-item-date {
+  white-space: nowrap;
+}
+
+/* Create QR: retain the three real panels on wide screens and stack them
+   progressively as the available space narrows. */
 .create-header {
   display: flex;
   align-items: center;
@@ -119,12 +153,16 @@ body {
 .create-header-left {
   display: flex;
   flex: 1 1 auto;
-  min-width: 0;
   align-items: flex-start;
   gap: 12px;
+  min-width: 0;
 }
 
-.create-title-block {
+.create-title-block,
+.create-header-actions,
+.create-type-selector-control,
+.selected-type-info,
+.selected-type-info > div:last-child {
   min-width: 0;
 }
 
@@ -140,12 +178,6 @@ body {
   min-width: 0;
 }
 
-.create-type-selector-control,
-.selected-type-info,
-.selected-type-info > div:last-child {
-  min-width: 0;
-}
-
 .selected-type-info span {
   overflow-wrap: anywhere;
 }
@@ -155,8 +187,12 @@ body {
 }
 
 .create-workspace {
+  display: grid;
   width: 100%;
   min-width: 0;
+  grid-template-columns: minmax(0, 1.2fr) minmax(220px, .78fr) minmax(260px, .95fr);
+  align-items: start;
+  gap: 13px;
 }
 
 .create-workspace-panel {
@@ -164,10 +200,7 @@ body {
   max-width: 100%;
 }
 
-.create-panel-heading > div:last-child {
-  min-width: 0;
-}
-
+.create-panel-heading > div:last-child,
 .create-panel-body,
 .preview-workspace,
 .preview-qr-container {
@@ -187,7 +220,7 @@ body {
   min-width: 0;
 }
 
-/* Workspace pages */
+/* Shared workspace pages: library, analytics, settings and templates. */
 .workspace-heading,
 .workspace-toolbar,
 .analytics-panel-heading,
@@ -221,11 +254,17 @@ body {
   min-width: 0;
 }
 
+.qr-library-copy h2,
+.template-item h2 {
+  overflow-wrap: anywhere;
+}
+
 .workspace-modal-backdrop {
   z-index: 300;
 }
 
 .workspace-modal {
+  width: min(460px, 100%);
   max-height: calc(100dvh - 40px);
   overflow-y: auto;
 }
@@ -236,14 +275,12 @@ body {
   height: auto;
 }
 
-.analytics-bars {
-  min-width: 0;
+.workspace-destination {
+  overflow-wrap: anywhere;
 }
 
-.analytics-bars-long {
-  max-width: 100%;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
+.analytics-bars {
+  min-width: 0;
 }
 
 .settings-field input,
@@ -254,7 +291,22 @@ body {
   min-width: 0;
 }
 
-/* Footer stays in the page flow and its columns cannot force horizontal overflow. */
+/* Help guide */
+.how-to-page {
+  max-width: 1040px;
+}
+
+.how-to-step,
+.step-content {
+  min-width: 0;
+}
+
+.how-to-step p,
+.explanation-card p {
+  overflow-wrap: anywhere;
+}
+
+/* Footer stays in normal document flow and does not push the viewport wider. */
 .app-footer {
   position: relative;
   flex: 0 0 auto;
@@ -266,7 +318,7 @@ body {
 
 .footer-main {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1.5fr);
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1fr) minmax(0, 1.4fr);
   align-items: center;
   gap: 18px;
   width: 100%;
@@ -276,18 +328,21 @@ body {
 }
 
 .footer-brand-button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
   min-width: 0;
   max-width: 100%;
 }
 
-.footer-brand-button span {
+.footer-brand-button span,
+.footer-main > p {
+  min-width: 0;
   overflow-wrap: anywhere;
 }
 
 .footer-main > p {
-  min-width: 0;
   margin: 0;
-  overflow-wrap: anywhere;
 }
 
 .footer-actions {
@@ -308,11 +363,6 @@ body {
   min-height: 34px;
   max-width: 100%;
   padding: 6px 9px;
-  color: #435047;
-  background: transparent;
-  border: 1px solid #dce2dc;
-  font-size: 10px;
-  line-height: 1.3;
   white-space: normal;
   overflow-wrap: anywhere;
 }
@@ -332,9 +382,6 @@ body {
   max-width: 1240px;
   margin: 0 auto;
   padding-top: 13px;
-  border-top: 1px solid #dce2dc;
-  color: #758077;
-  font-size: 10px;
 }
 
 @media (max-width: 1100px) {
@@ -343,20 +390,20 @@ body {
   }
 
   .app-shell-main {
-    width: 100%;
+    width: auto;
     margin-left: 0;
   }
 
-  .topbar {
-    display: flex;
-  }
-
   .app-shell-content {
-    padding-top: var(--header-height);
+    padding-top: 0;
   }
 
-  .app-footer {
-    margin-top: 8px;
+  .create-workspace {
+    grid-template-columns: minmax(0, 1fr) minmax(240px, .85fr);
+  }
+
+  .create-form-panel {
+    grid-column: 1 / -1;
   }
 
   .footer-main {
@@ -366,20 +413,13 @@ body {
 
   .footer-main > p {
     grid-column: 1;
+    grid-row: 2;
   }
 
   .footer-actions {
     grid-column: 2;
     grid-row: 1 / span 2;
     justify-content: flex-start;
-  }
-
-  .create-workspace {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
-  }
-
-  .create-form-panel {
-    grid-column: 1 / -1;
   }
 }
 
@@ -388,27 +428,46 @@ body {
     --layout-gutter: 14px;
   }
 
-  .app-shell-content {
+  .app-shell-main {
     padding-top: var(--header-height);
   }
 
+  .app-shell-content {
+    padding-top: 0;
+  }
+
   .dashboard-page,
-  .create-page,
   .workspace-page,
-  .how-to-page {
+  .how-to-page,
+  .create-page {
     width: calc(100% - 2 * var(--layout-gutter));
   }
 
-  .dashboard-page,
-  .workspace-page,
-  .how-to-page {
-    padding-top: 22px;
-    padding-bottom: 32px;
+  .dashboard-hero {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
   }
 
-  .create-page {
-    padding-top: 20px;
-    padding-bottom: 32px;
+  .hero-create-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stat-card {
+    border-bottom: 1px solid #dce2dc;
+  }
+
+  .quick-create-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-two-column {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .create-header {
@@ -431,7 +490,6 @@ body {
   }
 
   .create-type-selector {
-    display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 12px;
     padding: 14px;
@@ -446,7 +504,7 @@ body {
   .mobile-create-tabs {
     position: sticky;
     z-index: 30;
-    top: calc(var(--header-height) + 6px);
+    top: calc(var(--header-height) + 8px);
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 4px;
@@ -502,10 +560,6 @@ body {
     align-items: flex-start;
     flex-direction: column;
     gap: 12px;
-  }
-
-  .workspace-count {
-    align-self: flex-start;
   }
 
   .workspace-toolbar {
@@ -575,6 +629,7 @@ body {
   .analytics-bars-long {
     display: flex;
     overflow-x: auto;
+    overscroll-behavior-x: contain;
   }
 
   .analytics-bars-long .analytics-bar-column {
@@ -627,15 +682,19 @@ body {
     justify-content: flex-start;
   }
 
-  .footer-actions a,
-  .footer-actions button {
-    min-height: 36px;
-  }
-
   .footer-bottom {
     align-items: flex-start;
     flex-direction: column;
     gap: 6px;
+  }
+
+  .how-to-steps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .how-to-cta {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
 
@@ -656,6 +715,16 @@ body {
   .footer-actions a,
   .footer-actions button {
     justify-content: flex-start;
+  }
+
+  .recent-item {
+    gap: 8px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .recent-item-date {
+    display: none;
   }
 }
 
