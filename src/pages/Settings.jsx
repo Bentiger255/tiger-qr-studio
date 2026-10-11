@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { Download, FileUp, RotateCcw, Trash2 } from "lucide-react";
 
+import usePageMeta from "../hooks/usePageMeta";
 function readLibrary() {
   try {
     const value = JSON.parse(localStorage.getItem("tigerQRs") || "[]");
@@ -11,6 +12,7 @@ function readLibrary() {
 }
 
 function Settings() {
+  usePageMeta("Settings", "Manage QR defaults and back up your local QR code library.");
   const [codes, setCodes] = useState(readLibrary);
   const [notice, setNotice] = useState("");
   const [confirmClear, setConfirmClear] = useState(false);
