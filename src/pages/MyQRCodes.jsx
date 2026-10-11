@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Download, Eye, Search, Trash2 } from "lucide-react";
 import { QRCodeCanvas } from "qrcode.react";
 
@@ -13,10 +14,18 @@ function readLibrary() {
 
 function MyQRCodes() {
   const [codes, setCodes] = useState(readLibrary);
+  const [searchParams] = useSearchParams();
   const [query, setQuery] = useState("");
   const [typeFilter, setTypeFilter] = useState("all");
   const [selected, setSelected] = useState(null);
   const [notice, setNotice] = useState("");
+
+  useEffect(() => {
+    const id = searchParams.get("id");
+    if (!id) return;
+    const match = codes.find((code) => String(code.id) === id);
+    if (match) setSelected(match);
+  }, [searchParams, codes]);
 
   const types = useMemo(
     () => [...new Set(codes.map((code) => code.typeLabel || code.type).filter(Boolean))].sort(),
