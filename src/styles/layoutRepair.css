@@ -737,3 +737,163 @@ body {
     transition: none !important;
   }
 }
+
+
+/* Corrective pass based on the real AppShell, Sidebar, page wrappers and Footer JSX.
+   Keep the fixed desktop sidebar and main-content offset in sync at every breakpoint. */
+.app-shell {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+.app-shell-main {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - var(--sidebar-width));
+  min-width: 0;
+  margin-left: var(--sidebar-width);
+}
+
+.app-shell-content {
+  display: block;
+  flex: 1 0 auto;
+  width: 100%;
+  min-width: 0;
+}
+
+.app-shell-content > .page {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.app-shell-content > .page > main {
+  box-sizing: border-box;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100dvh;
+  min-height: 0;
+}
+
+.app-footer {
+  box-sizing: border-box;
+  clear: both;
+  margin-top: 20px;
+  padding: 22px clamp(16px, 2.5vw, 34px) 14px;
+}
+
+.footer-main {
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr) minmax(0, 1.3fr);
+}
+
+.footer-brand-button {
+  width: auto;
+  overflow-wrap: anywhere;
+}
+
+.footer-actions {
+  align-items: center;
+}
+
+@media (max-width: 1280px) and (min-width: 1001px) {
+  .create-workspace {
+    grid-template-columns: minmax(0, 1fr) minmax(250px, 0.9fr);
+  }
+
+  .create-form-panel {
+    grid-column: 1 / -1;
+  }
+
+  .footer-main {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .footer-main > p {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .footer-actions {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    justify-content: flex-start;
+  }
+}
+
+/* The sidebar becomes a drawer at the same 1000px breakpoint used by appLayout.css. */
+@media (max-width: 1000px) {
+  .app-shell-main {
+    width: 100%;
+    margin-left: 0;
+    padding-top: var(--header-height);
+  }
+
+  .app-shell-content {
+    padding-top: 0;
+  }
+
+  .sidebar {
+    width: min(290px, calc(100vw - 42px));
+    height: 100dvh;
+    max-height: 100dvh;
+  }
+
+  .footer-main {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .app-shell-main {
+    padding-top: var(--header-height);
+  }
+
+  .app-footer {
+    margin-top: 12px;
+    padding: 18px 14px 12px;
+  }
+
+  .footer-main {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 11px;
+    padding-bottom: 14px;
+  }
+
+  .footer-main > p,
+  .footer-actions {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .footer-actions {
+    justify-content: flex-start;
+    gap: 5px;
+  }
+
+  .footer-actions a,
+  .footer-actions button {
+    min-height: 36px;
+    padding: 6px 8px;
+  }
+
+  .footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 380px) {
+  .footer-actions a,
+  .footer-actions button {
+    justify-content: flex-start;
+    font-size: 10px;
+  }
+}
