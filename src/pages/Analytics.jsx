@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { BarChart3, CalendarDays, QrCode, TrendingUp } from "lucide-react";
 
+import usePageMeta from "../hooks/usePageMeta";
 function readLibrary() {
   try {
     const value = JSON.parse(localStorage.getItem("tigerQRs") || "[]");
@@ -11,6 +12,7 @@ function readLibrary() {
 }
 
 function Analytics() {
+  usePageMeta("Analytics", "Review QR creation activity and saved-code trends stored locally in this browser.");
   const [codes] = useState(readLibrary);
   const [period, setPeriod] = useState("30");
   const days = Number(period);
