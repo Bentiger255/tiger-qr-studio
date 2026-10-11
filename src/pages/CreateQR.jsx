@@ -217,7 +217,7 @@ function CreateQR() {
 
     const link = document.createElement("a");
 
-    link.download = `${(data.name || data.restaurantName || selectedQRType?.value || JSON.parse(localStorage.getItem("tigerQRSettings") || "{}").downloadName || "tiger-qr").replace(/[<>:"/\\|?*]+/g, "-")}.png`;
+    link.download = `${(data.name || data.restaurantName || JSON.parse(localStorage.getItem("tigerQRSettings") || "{}").downloadName || selectedQRType?.value || "tiger-qr").replace(/[<>:"\\|?*]+/g, "-").replaceAll("/", "-")}.png`;
 
     link.href = canvas.toDataURL("image/png");
     link.click();
