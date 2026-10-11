@@ -1,9 +1,9 @@
+import usePageMeta from "../hooks/usePageMeta";
 import { useMemo, useState } from "react";
 import { ArrowUpRight, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { qrTypes } from "../data/qrTypes";
 
-import usePageMeta from "../hooks/usePageMeta";
 const examples = {
   profile: { title: "Digital contact card", description: "Share your name and contact details from one scan.", use: "Networking and professional introductions" },
   phone: { title: "Call me", description: "Give customers or contacts a quick way to call you.", use: "Business cards and service desks" },
