@@ -12,12 +12,17 @@ import MyQRCodes from "./pages/MyQRCodes";
 import Templates from "./pages/Templates";
 import Analytics from "./pages/Analytics";
 import Settings from "./pages/Settings";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import usePageMeta from "./hooks/usePageMeta";
 import "./styles/workspacePages.css";
 import "./styles/appLayout.css";
 import "./styles/layoutRepair.css";
 import "./styles/dropdown.css";
 
 function NotFound() {
+  usePageMeta("Page Not Found", "The requested Tiger QR Studio page could not be found.");
+
   return (
     <main className="workspace-page">
       <section className="workspace-empty">
@@ -42,6 +47,8 @@ function App() {
           <Route path="/templates" element={<Templates />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </AppShell>
