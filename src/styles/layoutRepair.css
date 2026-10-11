@@ -1,6 +1,5 @@
-/* Page-specific layout corrections.
-   Selectors below are taken from the current JSX in Dashboard, CreateQR,
-   HowToUse, MyQRCodes, Settings, Templates and Analytics. */
+/* Shared layout rules. Page-specific styling remains in appLayout.css and
+   workspacePages.css; this file only owns the shell, footer and cross-page safety. */
 
 :root {
   --layout-gutter: clamp(16px, 3vw, 36px);
@@ -16,46 +15,44 @@ body,
 
 body {
   overflow-x: clip;
+  background: #f1f3f1;
 }
 
-#root,
-.app-shell {
+#root {
   min-height: 100vh;
 }
 
 .app-shell {
-  display: flex;
-  align-items: stretch;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 100vh;
+  background: #f1f3f1;
 }
 
 .app-shell-main {
   display: flex;
-  flex: 1 1 0;
   flex-direction: column;
-  width: auto;
+  width: calc(100% - var(--sidebar-width));
   min-width: 0;
   min-height: 100vh;
   margin-left: var(--sidebar-width);
 }
 
 .app-shell-content {
-  display: flex;
+  display: block;
   flex: 1 0 auto;
-  flex-direction: column;
   width: 100%;
   min-width: 0;
   min-height: 0;
 }
 
-.app-shell-content > *,
-.app-shell-content > .page,
-.app-shell-content > main {
+.app-shell-content > * {
   min-width: 0;
   max-width: 100%;
 }
 
-.app-shell-content > .page,
-.app-shell-content > main {
+.app-shell-content > .page {
   min-height: 0;
 }
 
@@ -78,13 +75,6 @@ body {
   width: min(calc(100% - 2 * var(--layout-gutter)), 1360px);
 }
 
-.dashboard-page *,
-.create-page *,
-.workspace-page *,
-.how-to-page * {
-  min-width: 0;
-}
-
 .dashboard-page img,
 .create-page img,
 .workspace-page img,
@@ -94,6 +84,13 @@ body {
 .workspace-page canvas,
 .how-to-page canvas {
   max-width: 100%;
+}
+
+.dashboard-page *,
+.create-page *,
+.workspace-page *,
+.how-to-page * {
+  min-width: 0;
 }
 
 .dashboard-page h1,
@@ -110,221 +107,29 @@ body {
   overflow-wrap: break-word;
 }
 
-/* Dashboard */
-.dashboard-hero {
-  min-width: 0;
-}
-
-.dashboard-hero-content {
-  min-width: 0;
-}
-
-.stats-grid,
-.quick-create-grid,
-.dashboard-two-column {
-  min-width: 0;
-}
-
-.quick-create-card {
-  min-width: 0;
-}
-
-.quick-create-content {
-  overflow-wrap: anywhere;
-}
-
-.recent-item {
-  min-width: 0;
-}
-
-.recent-item-date {
-  white-space: nowrap;
-}
-
-/* Create QR: retain the three real panels on wide screens and stack them
-   progressively as the available space narrows. */
-.create-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-}
-
-.create-header-left {
-  display: flex;
-  flex: 1 1 auto;
-  align-items: flex-start;
-  gap: 12px;
-  min-width: 0;
-}
-
-.create-title-block,
-.create-header-actions,
-.create-type-selector-control,
-.selected-type-info,
-.selected-type-info > div:last-child {
-  min-width: 0;
-}
-
-.create-header-actions {
-  display: flex;
-  flex: 0 0 auto;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.create-type-selector {
-  min-width: 0;
-}
-
-.selected-type-info span {
-  overflow-wrap: anywhere;
-}
-
-.mobile-create-tabs {
-  display: none;
-}
-
-.create-workspace {
-  display: grid;
-  width: 100%;
-  min-width: 0;
-  grid-template-columns: minmax(0, 1.2fr) minmax(220px, .78fr) minmax(260px, .95fr);
-  align-items: start;
-  gap: 13px;
-}
-
-.create-workspace-panel {
-  min-width: 0;
-  max-width: 100%;
-}
-
-.create-panel-heading > div:last-child,
-.create-panel-body,
-.preview-workspace,
-.preview-qr-container {
-  min-width: 0;
-  max-width: 100%;
-}
-
-.preview-qr-container canvas,
-.preview-qr-container svg {
-  display: block;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-}
-
-.preview-actions > button {
-  min-width: 0;
-}
-
-/* Shared workspace pages: library, analytics, settings and templates. */
-.workspace-heading,
-.workspace-toolbar,
-.analytics-panel-heading,
-.settings-action-row {
-  min-width: 0;
-}
-
-.workspace-heading > *,
-.analytics-panel-heading > *,
-.settings-action-copy {
-  min-width: 0;
-}
-
-.workspace-search {
-  min-width: 0;
-}
-
-.workspace-search input {
-  flex: 1 1 auto;
-}
-
-.qr-library-item,
-.template-item,
-.analytics-panel,
-.analytics-stat,
-.settings-section {
-  min-width: 0;
-}
-
-.qr-library-actions > button {
-  min-width: 0;
-}
-
-.qr-library-copy h2,
-.template-item h2 {
-  overflow-wrap: anywhere;
-}
-
-.workspace-modal-backdrop {
-  z-index: 300;
-}
-
-.workspace-modal {
-  width: min(460px, 100%);
-  max-height: calc(100dvh - 40px);
-  overflow-y: auto;
-}
-
-.workspace-modal-qr canvas {
-  display: block;
-  width: min(240px, 100%);
-  height: auto;
-}
-
-.workspace-destination {
-  overflow-wrap: anywhere;
-}
-
-.analytics-bars {
-  min-width: 0;
-}
-
-.settings-field input,
-.settings-field select,
-.workspace-filter select,
-.workspace-period select {
-  max-width: 100%;
-  min-width: 0;
-}
-
-/* Help guide */
-.how-to-page {
-  max-width: 1040px;
-}
-
-.how-to-step,
-.step-content {
-  min-width: 0;
-}
-
-.how-to-step p,
-.explanation-card p {
-  overflow-wrap: anywhere;
-}
-
-/* Footer stays in normal document flow and does not push the viewport wider. */
+/* Footer belongs to the main column and stays at the bottom on short pages. */
 .app-footer {
-  position: relative;
+  box-sizing: border-box;
   flex: 0 0 auto;
   width: 100%;
   min-width: 0;
   margin-top: auto;
-  padding: 24px var(--layout-gutter) 14px;
+  padding: 22px clamp(16px, 2.5vw, 34px) 14px;
+  color: #566258;
+  background: #e9ede9;
+  border-top: 1px solid #d2d9d2;
 }
 
 .footer-main {
   display: grid;
-  grid-template-columns: minmax(0, .9fr) minmax(0, 1fr) minmax(0, 1.4fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.3fr);
   align-items: center;
   gap: 18px;
   width: 100%;
   max-width: 1240px;
   min-width: 0;
   margin: 0 auto;
+  padding-bottom: 17px;
 }
 
 .footer-brand-button {
@@ -333,25 +138,35 @@ body {
   gap: 9px;
   min-width: 0;
   max-width: 100%;
+  padding: 0;
+  color: #202a22;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
 }
 
-.footer-brand-button span,
+.footer-brand-button span {
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: .08em;
+}
+
 .footer-main > p {
   min-width: 0;
-  overflow-wrap: anywhere;
-}
-
-.footer-main > p {
   margin: 0;
+  color: #667168;
+  font-size: 11px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
 }
 
 .footer-actions {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: flex-end;
   flex-wrap: wrap;
+  gap: 5px;
   min-width: 0;
-  gap: 6px;
 }
 
 .footer-actions a,
@@ -360,11 +175,23 @@ body {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  min-height: 34px;
+  min-width: 0;
+  min-height: 36px;
   max-width: 100%;
   padding: 6px 9px;
-  white-space: normal;
+  color: #3f5042;
+  background: transparent;
+  border: 1px solid transparent;
+  text-align: left;
+  font-size: 10px;
   overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+.footer-actions a:hover,
+.footer-actions button:hover {
+  background: #dfe7df;
+  border-color: #cbd6cc;
 }
 
 .footer-actions a svg,
@@ -374,38 +201,72 @@ body {
 
 .footer-bottom {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 8px 18px;
+  gap: 8px 16px;
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
-  padding-top: 13px;
+  padding-top: 12px;
+  color: #6f7a70;
+  border-top: 1px solid #d2d9d2;
+  font-size: 10px;
 }
 
-@media (max-width: 1100px) {
-  :root {
-    --layout-gutter: 24px;
-  }
+/* Keep the app's flat visual language consistent across form controls and panels. */
+button,
+input:not([type="color"]),
+textarea,
+select,
+.primary-button,
+.secondary-button,
+.secondary-action-button,
+.create-type-selector,
+.create-workspace-panel,
+.qr-library-item,
+.template-item,
+.analytics-stat,
+.analytics-panel,
+.settings-section,
+.workspace-empty,
+.workspace-modal {
+  border-radius: 2px;
+  box-shadow: none;
+}
 
-  .app-shell-main {
-    width: auto;
-    margin-left: 0;
-  }
+.primary-button:hover:not(:disabled),
+.secondary-button:hover:not(:disabled),
+.secondary-action-button:hover:not(:disabled),
+.sidebar-create-button:hover,
+.footer-actions a:hover,
+.footer-actions button:hover {
+  box-shadow: none;
+  transform: none;
+}
 
-  .app-shell-content {
-    padding-top: 0;
-  }
+.create-workspace-panel {
+  min-width: 0;
+}
 
-  .create-workspace {
-    grid-template-columns: minmax(0, 1fr) minmax(240px, .85fr);
-  }
+.create-workspace-panel,
+.create-panel-body,
+.create-panel-heading,
+.preview-workspace,
+.preview-qr-container {
+  max-width: 100%;
+}
 
-  .create-form-panel {
-    grid-column: 1 / -1;
-  }
+.create-workspace-panel {
+  overflow: visible;
+}
 
+/* Mobile create tabs are shown only when the three-panel layout stacks. */
+.mobile-create-tabs {
+  display: none;
+}
+
+@media (max-width: 1280px) and (min-width: 1001px) {
   .footer-main {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     align-items: start;
@@ -423,6 +284,48 @@ body {
   }
 }
 
+@media (max-width: 1000px) {
+  .app-shell-main {
+    width: 100%;
+    margin-left: 0;
+    padding-top: var(--header-height);
+  }
+
+  .app-shell-content {
+    padding-top: 0;
+  }
+
+  .dashboard-page,
+  .create-page,
+  .workspace-page,
+  .how-to-page {
+    width: calc(100% - 28px);
+  }
+
+  .footer-main {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .footer-main > p {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .footer-actions {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    justify-content: flex-start;
+  }
+
+  .create-workspace {
+    grid-template-columns: minmax(0, 1fr) minmax(240px, .85fr);
+  }
+
+  .create-form-panel {
+    grid-column: 1 / -1;
+  }
+}
+
 @media (max-width: 760px) {
   :root {
     --layout-gutter: 14px;
@@ -432,42 +335,11 @@ body {
     padding-top: var(--header-height);
   }
 
-  .app-shell-content {
-    padding-top: 0;
-  }
-
   .dashboard-page,
+  .create-page,
   .workspace-page,
-  .how-to-page,
-  .create-page {
-    width: calc(100% - 2 * var(--layout-gutter));
-  }
-
-  .dashboard-hero {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .hero-create-button {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .stats-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .stat-card {
-    border-bottom: 1px solid #dce2dc;
-  }
-
-  .quick-create-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .dashboard-two-column {
-    grid-template-columns: minmax(0, 1fr);
+  .how-to-page {
+    width: calc(100% - 28px);
   }
 
   .create-header {
@@ -476,23 +348,24 @@ body {
     gap: 12px;
   }
 
-  .create-header-left {
+  .create-header-left,
+  .create-header-actions {
     width: 100%;
+    min-width: 0;
   }
 
   .create-header-actions {
     display: flex;
-    width: 100%;
+    flex-wrap: wrap;
   }
 
   .create-header-actions button {
-    flex: 1 1 0;
+    flex: 1 1 auto;
   }
 
   .create-type-selector {
     grid-template-columns: minmax(0, 1fr);
     gap: 12px;
-    padding: 14px;
   }
 
   .create-type-selector .selected-type-info {
@@ -510,17 +383,27 @@ body {
     gap: 4px;
     margin: 0 0 12px;
     padding: 4px;
-    background: #edf1ed;
-    border: 1px solid #dce2dc;
+    background: #e9ede9;
+    border: 1px solid #d2d9d2;
   }
 
   .mobile-create-tabs button {
     min-width: 0;
     min-height: 40px;
-    padding: 5px 3px;
+    padding: 6px 4px;
+    color: #48544a;
+    background: transparent;
+    border: 1px solid transparent;
     font-size: 10px;
-    line-height: 1.3;
+    line-height: 1.35;
     overflow-wrap: anywhere;
+  }
+
+  .mobile-create-tabs button.active {
+    color: #203c26;
+    background: #d8e8da;
+    border-color: #bfd4c2;
+    font-weight: 700;
   }
 
   .create-workspace {
@@ -538,327 +421,8 @@ body {
     margin: 0;
   }
 
-  .create-panel-heading {
-    padding: 14px;
-  }
-
-  .preview-workspace {
-    padding: 12px;
-  }
-
-  .preview-qr-container {
-    min-height: 220px;
-    padding: 12px;
-  }
-
   .preview-actions {
     grid-template-columns: minmax(0, 1fr);
-    padding: 0 12px 12px;
-  }
-
-  .workspace-heading {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .workspace-toolbar {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .workspace-filter,
-  .workspace-period {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .workspace-filter select,
-  .workspace-period select {
-    flex: 1 1 auto;
-    width: 1px;
-  }
-
-  .template-intro {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .template-intro > a {
-    width: 100%;
-  }
-
-  .qr-library-grid,
-  .template-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .qr-library-actions {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 38px;
-    padding-right: 12px;
-    padding-left: 12px;
-  }
-
-  .analytics-stat-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .analytics-stat {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 6px;
-    padding: 13px;
-  }
-
-  .analytics-stat-icon {
-    grid-row: auto;
-  }
-
-  .analytics-panel {
-    padding: 14px;
-  }
-
-  .analytics-panel-heading {
-    align-items: flex-start;
-  }
-
-  .analytics-bars {
-    gap: 5px;
-  }
-
-  .analytics-bars-long {
-    display: flex;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-  }
-
-  .analytics-bars-long .analytics-bar-column {
-    flex: 0 0 28px;
-  }
-
-  .settings-section {
-    padding: 15px;
-  }
-
-  .settings-fields {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .settings-action-row {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .settings-action-row > button {
-    width: 100%;
-  }
-
-  .settings-confirm {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .settings-confirm > div {
-    flex-wrap: wrap;
-  }
-
-  .app-footer {
-    padding: 19px var(--layout-gutter) 13px;
-  }
-
-  .footer-main {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 12px;
-    padding-bottom: 15px;
-  }
-
-  .footer-main > p,
-  .footer-actions {
-    grid-column: auto;
-    grid-row: auto;
-  }
-
-  .footer-actions {
-    justify-content: flex-start;
-  }
-
-  .footer-bottom {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .how-to-steps {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .how-to-cta {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 420px) {
-  .analytics-stat-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .create-header-actions {
-    gap: 7px;
-  }
-
-  .create-header-actions button {
-    padding-right: 8px;
-    padding-left: 8px;
-  }
-
-  .footer-actions a,
-  .footer-actions button {
-    justify-content: flex-start;
-  }
-
-  .recent-item {
-    gap: 8px;
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-
-  .recent-item-date {
-    display: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .sidebar,
-  .sidebar-overlay,
-  .mobile-create-tabs button,
-  .footer-actions a,
-  .footer-actions button {
-    transition: none !important;
-  }
-}
-
-
-/* Corrective pass based on the real AppShell, Sidebar, page wrappers and Footer JSX.
-   Keep the fixed desktop sidebar and main-content offset in sync at every breakpoint. */
-.app-shell {
-  display: block;
-  width: 100%;
-  min-width: 0;
-}
-
-.app-shell-main {
-  display: flex;
-  flex-direction: column;
-  width: calc(100% - var(--sidebar-width));
-  min-width: 0;
-  margin-left: var(--sidebar-width);
-}
-
-.app-shell-content {
-  display: block;
-  flex: 1 0 auto;
-  width: 100%;
-  min-width: 0;
-}
-
-/* Let each real page class control its own width. A generic width:100%
-   here overrides .dashboard-page and .workspace-page sizing due to specificity. */
-.app-shell-content > .page {
-  min-width: 0;
-  min-height: 0;
-}
-
-.app-shell-content > .page > main {
-  box-sizing: border-box;
-}
-
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  height: 100dvh;
-  min-height: 0;
-}
-
-.app-footer {
-  box-sizing: border-box;
-  clear: both;
-  margin-top: 20px;
-  padding: 22px clamp(16px, 2.5vw, 34px) 14px;
-}
-
-.footer-main {
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr) minmax(0, 1.3fr);
-}
-
-.footer-brand-button {
-  width: auto;
-  overflow-wrap: anywhere;
-}
-
-.footer-actions {
-  align-items: center;
-}
-
-@media (max-width: 1280px) and (min-width: 1001px) {
-  .create-workspace {
-    grid-template-columns: minmax(0, 1fr) minmax(250px, 0.9fr);
-  }
-
-  .create-form-panel {
-    grid-column: 1 / -1;
-  }
-
-  .footer-main {
-    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
-    align-items: start;
-  }
-
-  .footer-main > p {
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  .footer-actions {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-    justify-content: flex-start;
-  }
-}
-
-/* The sidebar becomes a drawer at the same 1000px breakpoint used by appLayout.css. */
-@media (max-width: 1000px) {
-  .app-shell-main {
-    width: 100%;
-    margin-left: 0;
-    padding-top: var(--header-height);
-  }
-
-  .app-shell-content {
-    padding-top: 0;
-  }
-
-  .sidebar {
-    width: min(290px, calc(100vw - 42px));
-    height: 100dvh;
-    max-height: 100dvh;
-  }
-
-  .footer-main {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  }
-}
-
-@media (max-width: 760px) {
-  .app-shell-main {
-    padding-top: var(--header-height);
-  }
-
-  .app-footer {
-    margin-top: 12px;
-    padding: 18px 14px 12px;
   }
 
   .footer-main {
@@ -875,13 +439,6 @@ body {
 
   .footer-actions {
     justify-content: flex-start;
-    gap: 5px;
-  }
-
-  .footer-actions a,
-  .footer-actions button {
-    min-height: 36px;
-    padding: 6px 8px;
   }
 
   .footer-bottom {
@@ -891,10 +448,22 @@ body {
   }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 420px) {
   .footer-actions a,
   .footer-actions button {
     justify-content: flex-start;
-    font-size: 10px;
+    padding-right: 7px;
+    padding-left: 7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
