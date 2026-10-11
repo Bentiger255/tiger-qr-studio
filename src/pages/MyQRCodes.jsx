@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Download, Eye, Search, Trash2 } from "lucide-react";
 import { QRCodeCanvas } from "qrcode.react";
@@ -14,18 +14,15 @@ function readLibrary() {
 
 function MyQRCodes() {
   const [codes, setCodes] = useState(readLibrary);
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState("");
   const [typeFilter, setTypeFilter] = useState("all");
-  const [selected, setSelected] = useState(null);
+  const [manualSelected, setManualSelected] = useState(null);
+  const requestedId = searchParams.get("id");
+  const selected = requestedId
+    ? codes.find((code) => String(code.id) === requestedId) || manualSelected
+    : manualSelected;
   const [notice, setNotice] = useState("");
-
-  useEffect(() => {
-    const id = searchParams.get("id");
-    if (!id) return;
-    const match = codes.find((code) => String(code.id) === id);
-    if (match) setSelected(match);
-  }, [searchParams, codes]);
 
   const types = useMemo(
     () => [...new Set(codes.map((code) => code.typeLabel || code.type).filter(Boolean))].sort(),
@@ -43,8 +40,31 @@ function MyQRCodes() {
     const next = codes.filter((code) => code.id !== id);
     localStorage.setItem("tigerQRs", JSON.stringify(next));
     setCodes(next);
-    if (selected?.id === id) setSelected(null);
+    if (selected?.id === id) setManualSelected(null);
+    if (requestedId === String(id)) {
+      const nextParams = new URLSearchParams(searchParams);
+      nextParams.delete("id");
+      setSearchParams(nextParams, { replace: true });
+    }
     setNotice("QR code deleted.");
+  };
+
+  const openPreview = (code) => {
+    setManualSelected(code);
+    if (requestedId) {
+      const nextParams = new URLSearchParams(searchParams);
+      nextParams.delete("id");
+      setSearchParams(nextParams, { replace: true });
+    }
+  };
+
+  const closePreview = () => {
+    setManualSelected(null);
+    if (requestedId) {
+      const nextParams = new URLSearchParams(searchParams);
+      nextParams.delete("id");
+      setSearchParams(nextParams, { replace: true });
+    }
   };
 
   const downloadCode = (code) => {
@@ -106,7 +126,7 @@ function MyQRCodes() {
                 <p>Saved {code.createdAt ? new Date(code.createdAt).toLocaleDateString() : "date unavailable"}</p>
               </div>
               <div className="qr-library-actions">
-                <button className="secondary-button" onClick={() => setSelected(code)}><Eye size={15} /> Preview</button>
+                <button className="secondary-button" onClick={() => openPreview(code)}><Eye size={15} /> Preview</button>
                 <button className="secondary-button" onClick={() => downloadCode(code)}><Download size={15} /> PNG</button>
                 <button className="danger-button" onClick={() => removeCode(code.id)} aria-label={"Delete " + (code.name || "QR code")}><Trash2 size={15} /></button>
               </div>
@@ -116,7 +136,7 @@ function MyQRCodes() {
       )}
 
       {selected && (
-        <div className="workspace-modal-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setSelected(null); }}>
+        <div className="workspace-modal-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) closePreview(); }}>
           <section className="workspace-modal" role="dialog" aria-modal="true" aria-labelledby="qr-preview-title">
             <button className="workspace-modal-close" onClick={() => setSelected(null)} aria-label="Close preview">×</button>
             <span className="section-kicker">SAVED QR CODE</span>
