@@ -1,0 +1,80 @@
+export const countries = [
+  {
+    code: "TZ",
+    name: "Tanzania",
+    dialCode: "+255",
+    flag: "🇹🇿",
+  },
+  {
+    code: "KE",
+    name: "Kenya",
+    dialCode: "+254",
+    flag: "🇰🇪",
+  },
+  {
+    code: "UG",
+    name: "Uganda",
+    dialCode: "+256",
+    flag: "🇺🇬",
+  },
+  {
+    code: "RW",
+    name: "Rwanda",
+    dialCode: "+250",
+    flag: "🇷🇼",
+  },
+  {
+    code: "BI",
+    name: "Burundi",
+    dialCode: "+257",
+    flag: "🇧🇮",
+  },
+  {
+    code: "ZM",
+    name: "Zambia",
+    dialCode: "+260",
+    flag: "🇿🇲",
+  },
+  {
+    code: "MW",
+    name: "Malawi",
+    dialCode: "+265",
+    flag: "🇲🇼",
+  },
+  {
+    code: "ZA",
+    name: "South Africa",
+    dialCode: "+27",
+    flag: "🇿🇦",
+  },
+  {
+    code: "NG",
+    name: "Nigeria",
+    dialCode: "+234",
+    flag: "🇳🇬",
+  },
+  {
+    code: "GH",
+    name: "Ghana",
+    dialCode: "+233",
+    flag: "🇬🇭",
+  },
+  {
+    code: "US",
+    name: "United States",
+    dialCode: "+1",
+    flag: "🇺🇸",
+  },
+  {
+    code: "GB",
+    name: "United Kingdom",
+    dialCode: "+44",
+    flag: "🇬🇧",
+  },
+  {
+    code: "IN",
+    name: "India",
+    dialCode: "+91",
+    flag: "🇮🇳",
+  },
+];

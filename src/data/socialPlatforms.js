@@ -1,0 +1,60 @@
+import { Share2 } from "lucide-react";
+
+export const socialPlatforms = [
+  {
+    value: "instagram",
+    label: "Instagram",
+    description: "Share your Instagram profile",
+    icon: Share2,
+    placeholder: "@username",
+    example: "@benjamin",
+  },
+  {
+    value: "facebook",
+    label: "Facebook",
+    description: "Share your Facebook profile",
+    icon: Share2,
+    placeholder: "Username or profile URL",
+    example: "facebook.com/username",
+  },
+  {
+    value: "linkedin",
+    label: "LinkedIn",
+    description: "Share your LinkedIn profile",
+    icon: Share2,
+    placeholder: "Username or profile URL",
+    example: "linkedin.com/in/username",
+  },
+  {
+    value: "tiktok",
+    label: "TikTok",
+    description: "Share your TikTok profile",
+    icon: Share2,
+    placeholder: "@username",
+    example: "@username",
+  },
+  {
+    value: "youtube",
+    label: "YouTube",
+    description: "Share your YouTube channel",
+    icon: Share2,
+    placeholder: "Channel URL",
+    example: "youtube.com/@channel",
+  },
+  {
+    value: "telegram",
+    label: "Telegram",
+    description: "Share your Telegram profile",
+    icon: Share2,
+    placeholder: "@username",
+    example: "@username",
+  },
+  {
+    value: "website",
+    label: "Website",
+    description: "Share a website",
+    icon: Share2,
+    placeholder: "Website URL",
+    example: "example.com",
+  },
+];
