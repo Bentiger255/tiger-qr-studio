@@ -1,4 +1,4 @@
-import { ArrowUpRight, BookOpen, Github, House } from "lucide-react";
+import { ArrowUpRight, BookOpen, House } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import TigerLogo from "./brand/TigerLogo";
 
@@ -16,7 +16,7 @@ function Footer() {
         <nav className="footer-actions" aria-label="Footer navigation">
           <button type="button" onClick={() => navigate("/")}><House size={14} /><span>Dashboard</span></button>
           <button type="button" onClick={() => navigate("/how-to-use")}><BookOpen size={14} /><span>Help guide</span></button>
-          <a href="https://github.com/Bentiger255/tiger-qr-studio" target="_blank" rel="noreferrer"><Github size={14} /><span>Source code</span><ArrowUpRight size={12} /></a>
+          <a href="https://github.com/Bentiger255/tiger-qr-studio" target="_blank" rel="noreferrer"><span className="footer-source-mark" aria-hidden="true">{"</>"}</span><span>Source code</span><ArrowUpRight size={12} /></a>
         </nav>
       </div>
       <div className="footer-bottom">
