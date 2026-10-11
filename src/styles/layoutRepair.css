@@ -199,6 +199,18 @@ body {
   flex: 0 0 auto;
 }
 
+.footer-source-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 16px;
+  color: #3f5042;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 10px;
+  font-weight: 700;
+}
+
 .footer-bottom {
   display: flex;
   align-items: center;
