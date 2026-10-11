@@ -513,3 +513,93 @@ select,
     animation-iteration-count: 1 !important;
   }
 }
+
+/* Flatten legacy preview and workspace surfaces to match the current design
+   direction: no radial backgrounds, decorative shadows or pill-shaped controls. */
+.qr-preview-card,
+.qr-preview-stage,
+.qr-canvas-wrapper,
+.qr-empty-icon,
+.qr-value,
+.customizer,
+.form-section,
+.workspace-search,
+.workspace-empty,
+.qr-library-item,
+.qr-library-image,
+.template-item,
+.template-intro,
+.analytics-notice,
+.analytics-panel,
+.analytics-stat,
+.settings-section,
+.workspace-modal,
+.workspace-modal-qr,
+.explanation-card,
+.static-smart-section,
+.how-to-cta {
+  border-radius: 2px;
+  box-shadow: none;
+}
+
+.qr-preview-card,
+.qr-library-item,
+.template-item,
+.analytics-panel,
+.analytics-stat,
+.settings-section,
+.workspace-empty,
+.workspace-modal,
+.explanation-card {
+  background-color: #f8faf8;
+}
+
+.qr-preview-stage {
+  background: #e9ede9;
+}
+
+.qr-canvas-wrapper {
+  background: #f8faf8;
+}
+
+.qr-empty-icon {
+  background: #e2e9e2;
+}
+
+.qr-value,
+.workspace-modal-qr,
+.qr-library-image {
+  background: #edf1ed;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select,
+.workspace-search,
+.workspace-filter select,
+.workspace-period select,
+.settings-field input,
+.settings-field select {
+  background-color: #f8faf8;
+  border-radius: 2px;
+  box-shadow: none;
+}
+
+.qr-preview-stage,
+.qr-canvas-wrapper,
+.qr-empty-icon,
+.qr-value {
+  background-image: none;
+}
+
+@media (max-width: 760px) {
+  .qr-preview-stage {
+    min-height: 220px;
+    padding: 12px;
+  }
+
+  .qr-canvas-wrapper {
+    max-width: 100%;
+    padding: 8px;
+  }
+}
