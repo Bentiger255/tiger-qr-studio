@@ -17,7 +17,7 @@ import { qrTypes } from "../data/qrTypes";
 function Dashboard() {
   const navigate = useNavigate();
 
-  let recentQRs = [];
+  let recentQRs;
 
   try {
     recentQRs = JSON.parse(
