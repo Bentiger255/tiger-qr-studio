@@ -19,8 +19,8 @@ function AppShell({ children }) {
         onClose={() => setSidebarOpen(false)}
       />
 
-      <div className="app-main">
-        <div className="app-content">
+      <div className="app-shell-main">
+        <div className="app-shell-content">
           {children}
         </div>
 
