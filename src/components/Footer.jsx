@@ -16,6 +16,8 @@ function Footer() {
         <nav className="footer-actions" aria-label="Footer navigation">
           <button type="button" onClick={() => navigate("/")}><House size={14} /><span>Dashboard</span></button>
           <button type="button" onClick={() => navigate("/how-to-use")}><BookOpen size={14} /><span>Help guide</span></button>
+          <button type="button" onClick={() => navigate("/privacy")}><span>Privacy</span></button>
+          <button type="button" onClick={() => navigate("/terms")}><span>Terms</span></button>
           <a href="https://github.com/Bentiger255/tiger-qr-studio" target="_blank" rel="noreferrer"><span className="footer-source-mark" aria-hidden="true">{"</>"}</span><span>Source code</span><ArrowUpRight size={12} /></a>
         </nav>
       </div>
