@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import {
+import usePageMeta from "../hooks/usePageMeta";
   ArrowLeft,
   Check,
   ChevronRight,
@@ -83,6 +84,7 @@ const initialSettings = {
 };
 
 function CreateQR() {
+  usePageMeta("Create QR Code", "Build a QR code for a website, contact, Wi-Fi network, social profile, location and more.");
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
