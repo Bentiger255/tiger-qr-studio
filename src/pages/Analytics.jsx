@@ -14,16 +14,18 @@ function Analytics() {
   const [codes] = useState(readLibrary);
   const [period, setPeriod] = useState("30");
   const days = Number(period);
-  const now = new Date();
-  const start = new Date(now);
-  start.setHours(0, 0, 0, 0);
-  start.setDate(start.getDate() - (days - 1));
 
-  const inPeriod = useMemo(() => codes.filter((code) => {
-    if (!code.createdAt) return false;
-    const date = new Date(code.createdAt);
-    return !Number.isNaN(date.getTime()) && date >= start && date <= now;
-  }), [codes, period]);
+  const inPeriod = useMemo(() => {
+    const end = new Date();
+    const cutoff = new Date(end);
+    cutoff.setHours(0, 0, 0, 0);
+    cutoff.setDate(cutoff.getDate() - (days - 1));
+    return codes.filter((code) => {
+      if (!code.createdAt) return false;
+      const date = new Date(code.createdAt);
+      return !Number.isNaN(date.getTime()) && date >= cutoff && date <= end;
+    });
+  }, [codes, days]);
 
   const daily = useMemo(() => {
     const rows = [];
