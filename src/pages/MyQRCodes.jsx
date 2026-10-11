@@ -1,9 +1,9 @@
+import usePageMeta from "../hooks/usePageMeta";
 import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Download, Eye, Search, Trash2 } from "lucide-react";
 import { QRCodeCanvas } from "qrcode.react";
 
-import usePageMeta from "../hooks/usePageMeta";
 function readLibrary() {
   try {
     const value = JSON.parse(localStorage.getItem("tigerQRs") || "[]");
