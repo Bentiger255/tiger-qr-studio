@@ -1,0 +1,670 @@
+/* Layout repair layer: loaded after the existing styles so the live component
+   class names, shared shell, page widths, mobile layouts and footer agree. */
+
+:root {
+  --layout-gutter: clamp(16px, 3.2vw, 42px);
+}
+
+html, body, #root {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+#root,
+.app-shell {
+  min-height: 100vh;
+}
+
+.app-shell {
+  display: flex;
+  align-items: stretch;
+}
+
+.app-shell-main {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  width: calc(100% - var(--sidebar-width));
+  min-height: 100vh;
+  margin-left: var(--sidebar-width);
+}
+
+.app-shell-content {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  min-width: 0;
+  width: 100%;
+  min-height: 0;
+}
+
+.app-shell-content > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.app-shell-content > .page,
+.app-shell-content > main {
+  min-height: 0;
+}
+
+.dashboard-page,
+.create-page,
+.workspace-page,
+.how-to-page {
+  width: min(100% - 2 * var(--layout-gutter), 1240px);
+  min-width: 0;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.dashboard-page,
+.workspace-page,
+.how-to-page {
+  padding-top: clamp(22px, 3vw, 38px);
+  padding-bottom: clamp(28px, 4vw, 52px);
+}
+
+.create-page {
+  padding-top: clamp(20px, 2.8vw, 32px);
+  padding-bottom: clamp(28px, 4vw, 48px);
+}
+
+.dashboard-page *,
+.create-page *,
+.workspace-page *,
+.how-to-page * {
+  min-width: 0;
+}
+
+.dashboard-page img,
+.create-page img,
+.workspace-page img,
+.how-to-page img,
+.dashboard-page canvas,
+.create-page canvas,
+.workspace-page canvas,
+.how-to-page canvas {
+  max-width: 100%;
+}
+
+.dashboard-page h1,
+.create-page h1,
+.workspace-page h1,
+.how-to-page h1 {
+  overflow-wrap: anywhere;
+}
+
+.dashboard-page p,
+.create-page p,
+.workspace-page p,
+.how-to-page p {
+  overflow-wrap: break-word;
+}
+
+/* Create page uses create-workspace-panel, not the older create-column names. */
+.create-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.create-header-left {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.create-title-block {
+  min-width: 0;
+}
+
+.create-header-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.create-type-selector {
+  min-width: 0;
+}
+
+.create-type-selector-control,
+.selected-type-info,
+.selected-type-info > div:last-child {
+  min-width: 0;
+}
+
+.selected-type-info span {
+  overflow-wrap: anywhere;
+}
+
+.mobile-create-tabs {
+  display: none;
+}
+
+.create-workspace {
+  width: 100%;
+  min-width: 0;
+}
+
+.create-workspace-panel {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.create-panel-heading > div:last-child {
+  min-width: 0;
+}
+
+.create-panel-body,
+.preview-workspace,
+.preview-qr-container {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.preview-qr-container canvas,
+.preview-qr-container svg {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.preview-actions > button {
+  min-width: 0;
+}
+
+/* Workspace pages */
+.workspace-heading,
+.workspace-toolbar,
+.analytics-panel-heading,
+.settings-action-row {
+  min-width: 0;
+}
+
+.workspace-heading > *,
+.analytics-panel-heading > *,
+.settings-action-copy {
+  min-width: 0;
+}
+
+.workspace-search {
+  min-width: 0;
+}
+
+.workspace-search input {
+  flex: 1 1 auto;
+}
+
+.qr-library-item,
+.template-item,
+.analytics-panel,
+.analytics-stat,
+.settings-section {
+  min-width: 0;
+}
+
+.qr-library-actions > button {
+  min-width: 0;
+}
+
+.workspace-modal-backdrop {
+  z-index: 300;
+}
+
+.workspace-modal {
+  max-height: calc(100dvh - 40px);
+  overflow-y: auto;
+}
+
+.workspace-modal-qr canvas {
+  display: block;
+  width: min(240px, 100%);
+  height: auto;
+}
+
+.analytics-bars {
+  min-width: 0;
+}
+
+.analytics-bars-long {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+.settings-field input,
+.settings-field select,
+.workspace-filter select,
+.workspace-period select {
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* Footer stays in the page flow and its columns cannot force horizontal overflow. */
+.app-footer {
+  position: relative;
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 0;
+  margin-top: auto;
+  padding: 24px var(--layout-gutter) 14px;
+}
+
+.footer-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1.5fr);
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  max-width: 1240px;
+  min-width: 0;
+  margin: 0 auto;
+}
+
+.footer-brand-button {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.footer-brand-button span {
+  overflow-wrap: anywhere;
+}
+
+.footer-main > p {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.footer-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  min-width: 0;
+  gap: 6px;
+}
+
+.footer-actions a,
+.footer-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 34px;
+  max-width: 100%;
+  padding: 6px 9px;
+  color: #435047;
+  background: transparent;
+  border: 1px solid #dce2dc;
+  font-size: 10px;
+  line-height: 1.3;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.footer-actions a svg,
+.footer-actions button svg {
+  flex: 0 0 auto;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-top: 13px;
+  border-top: 1px solid #dce2dc;
+  color: #758077;
+  font-size: 10px;
+}
+
+@media (max-width: 1100px) {
+  :root {
+    --layout-gutter: 24px;
+  }
+
+  .app-shell-main {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .topbar {
+    display: flex;
+  }
+
+  .app-shell-content {
+    padding-top: var(--header-height);
+  }
+
+  .app-footer {
+    margin-top: 8px;
+  }
+
+  .footer-main {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .footer-main > p {
+    grid-column: 1;
+  }
+
+  .footer-actions {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    justify-content: flex-start;
+  }
+
+  .create-workspace {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  }
+
+  .create-form-panel {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --layout-gutter: 14px;
+  }
+
+  .app-shell-content {
+    padding-top: var(--header-height);
+  }
+
+  .dashboard-page,
+  .create-page,
+  .workspace-page,
+  .how-to-page {
+    width: calc(100% - 2 * var(--layout-gutter));
+  }
+
+  .dashboard-page,
+  .workspace-page,
+  .how-to-page {
+    padding-top: 22px;
+    padding-bottom: 32px;
+  }
+
+  .create-page {
+    padding-top: 20px;
+    padding-bottom: 32px;
+  }
+
+  .create-header {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .create-header-left {
+    width: 100%;
+  }
+
+  .create-header-actions {
+    display: flex;
+    width: 100%;
+  }
+
+  .create-header-actions button {
+    flex: 1 1 0;
+  }
+
+  .create-type-selector {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .create-type-selector .selected-type-info {
+    padding: 12px 0 0;
+    border-top: 1px solid #dce2dc;
+    border-left: 0;
+  }
+
+  .mobile-create-tabs {
+    position: sticky;
+    z-index: 30;
+    top: calc(var(--header-height) + 6px);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
+    margin: 0 0 12px;
+    padding: 4px;
+    background: #edf1ed;
+    border: 1px solid #dce2dc;
+  }
+
+  .mobile-create-tabs button {
+    min-width: 0;
+    min-height: 40px;
+    padding: 5px 3px;
+    font-size: 10px;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+  }
+
+  .create-workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .create-workspace-panel.mobile-hidden {
+    display: none;
+  }
+
+  .create-workspace-panel {
+    width: 100%;
+    margin: 0;
+  }
+
+  .create-panel-heading {
+    padding: 14px;
+  }
+
+  .preview-workspace {
+    padding: 12px;
+  }
+
+  .preview-qr-container {
+    min-height: 220px;
+    padding: 12px;
+  }
+
+  .preview-actions {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 0 12px 12px;
+  }
+
+  .workspace-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .workspace-count {
+    align-self: flex-start;
+  }
+
+  .workspace-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .workspace-filter,
+  .workspace-period {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .workspace-filter select,
+  .workspace-period select {
+    flex: 1 1 auto;
+    width: 1px;
+  }
+
+  .template-intro {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .template-intro > a {
+    width: 100%;
+  }
+
+  .qr-library-grid,
+  .template-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .qr-library-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 38px;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .analytics-stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .analytics-stat {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+    padding: 13px;
+  }
+
+  .analytics-stat-icon {
+    grid-row: auto;
+  }
+
+  .analytics-panel {
+    padding: 14px;
+  }
+
+  .analytics-panel-heading {
+    align-items: flex-start;
+  }
+
+  .analytics-bars {
+    gap: 5px;
+  }
+
+  .analytics-bars-long {
+    display: flex;
+    overflow-x: auto;
+  }
+
+  .analytics-bars-long .analytics-bar-column {
+    flex: 0 0 28px;
+  }
+
+  .settings-section {
+    padding: 15px;
+  }
+
+  .settings-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .settings-action-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .settings-action-row > button {
+    width: 100%;
+  }
+
+  .settings-confirm {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .settings-confirm > div {
+    flex-wrap: wrap;
+  }
+
+  .app-footer {
+    padding: 19px var(--layout-gutter) 13px;
+  }
+
+  .footer-main {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    padding-bottom: 15px;
+  }
+
+  .footer-main > p,
+  .footer-actions {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .footer-actions {
+    justify-content: flex-start;
+  }
+
+  .footer-actions a,
+  .footer-actions button {
+    min-height: 36px;
+  }
+
+  .footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 420px) {
+  .analytics-stat-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .create-header-actions {
+    gap: 7px;
+  }
+
+  .create-header-actions button {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
+  .footer-actions a,
+  .footer-actions button {
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar,
+  .sidebar-overlay,
+  .mobile-create-tabs button,
+  .footer-actions a,
+  .footer-actions button {
+    transition: none !important;
+  }
+}
