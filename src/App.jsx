@@ -14,6 +14,7 @@ import Analytics from "./pages/Analytics";
 import Settings from "./pages/Settings";
 import "./styles/workspacePages.css";
 import "./styles/appLayout.css";
+import "./styles/layoutRepair.css";
 
 function NotFound() {
   return (
