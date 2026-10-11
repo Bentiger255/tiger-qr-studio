@@ -18,8 +18,8 @@ Tiger QR Studio is a browser-based QR code builder built with React and Vite. It
 - React
 - Vite
 - React Router
-- \`qrcode.react\` for QR rendering
-- \`libphonenumber-js\` for phone-number helpers
+- `qrcode.react` for QR rendering
+- `libphonenumber-js` for phone-number helpers
 - Lucide React icons
 - CSS
 
@@ -32,12 +32,12 @@ Tiger QR Studio is a browser-based QR code builder built with React and Vite. It
 
 Clone the repository and install dependencies:
 
-\`\`\`bash
+```bash
 git clone https://github.com/Bentiger255/tiger-qr-studio.git
 cd tiger-qr-studio
 npm install
 npm run dev
-\`\`\`
+```
 
 Vite prints a local development URL in the terminal. Open that URL in your browser.
 
@@ -45,21 +45,21 @@ Vite prints a local development URL in the terminal. Open that URL in your brows
 
 | Command | Purpose |
 | --- | --- |
-| \`npm run dev\` | Start the development server |
-| \`npm run build\` | Build the production bundle in \`dist/\` |
-| \`npm run preview\` | Preview the production build locally |
-| \`npm run lint\` | Run ESLint checks |
+| `npm run dev` | Start the development server |
+| `npm run build` | Build the production bundle in `dist/` |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint` | Run ESLint checks |
 
 Before publishing a change, run:
 
-\`\`\`bash
+```bash
 npm run lint
 npm run build
-\`\`\`
+```
 
 ## How data is stored
 
-The current version saves QR entries in the browser's \`localStorage\` under \`tigerQRs\`. Preferences are stored locally under \`tigerQRSettings\`. Data is specific to the browser and device where it was created. It is not synced to a server or user account.
+The current version saves QR entries in the browser's `localStorage` under `tigerQRs`. Preferences are stored locally under `tigerQRSettings`. Data is specific to the browser and device where it was created. It is not synced to a server or user account.
 
 Use **Settings → Export library** to download a backup before clearing site data or moving to another device. Import a previously exported JSON backup from the same page.
 
@@ -77,7 +77,7 @@ Analytics currently describes QR codes saved in the local browser library. The a
 
 ## Project structure
 
-\`\`\`text
+```text
 src/
   components/   Reusable layout, form, QR and UI components
   data/         QR type definitions
@@ -85,13 +85,13 @@ src/
   styles/       Styles for the workspace pages
   utils/        QR payload generation helpers
 public/         Static public assets
-\`\`\`
+```
 
 ## Contributing
 
 1. Create a branch for your change.
 2. Keep UI states responsive and accessible.
-3. Run \`npm run lint\` and \`npm run build\`.
+3. Run `npm run lint` and `npm run build`.
 4. Describe the behavior changed in your pull request.
 
 ## License
