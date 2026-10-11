@@ -6,7 +6,7 @@ import {
   Plus,
   QrCode,
   Settings,
-  Sparkles,
+  FileText,
   X,
 } from "lucide-react";
 
@@ -41,7 +41,7 @@ const navigation = [
       {
         label: "Templates",
         path: "/templates",
-        icon: Sparkles,
+        icon: FileText,
       },
     ],
   },
