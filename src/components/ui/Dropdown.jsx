@@ -1,4 +1,4 @@
-import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Check, ChevronDown } from "lucide-react";
 
@@ -23,7 +23,7 @@ function Dropdown({
   const selectedIndex = options.findIndex((option) => option.value === value);
   const selectedOption = selectedIndex >= 0 ? options[selectedIndex] : null;
 
-  const updatePosition = () => {
+  const updatePosition = useCallback(() => {
     const trigger = triggerRef.current;
     if (!trigger) return;
 
@@ -51,7 +51,7 @@ function Dropdown({
       width,
       maxHeight: available,
     });
-  };
+  }, [options.length]);
 
   useLayoutEffect(() => {
     if (!open) return undefined;
@@ -85,7 +85,7 @@ function Dropdown({
       document.removeEventListener("pointerdown", handleOutsidePointer);
       document.removeEventListener("keydown", handleEscape);
     };
-  }, [open, options.length]);
+  }, [open, updatePosition]);
 
   useEffect(() => {
     if (open) optionRefs.current[activeIndex]?.focus();
@@ -120,7 +120,7 @@ function Dropdown({
   };
 
   const handleOptionKeyDown = (event, index) => {
-    let nextIndex = index;
+    let nextIndex;
 
     if (event.key === "ArrowDown") nextIndex = (index + 1) % options.length;
     else if (event.key === "ArrowUp") nextIndex = (index - 1 + options.length) % options.length;
