@@ -15,6 +15,7 @@ import Settings from "./pages/Settings";
 import "./styles/workspacePages.css";
 import "./styles/appLayout.css";
 import "./styles/layoutRepair.css";
+import "./styles/dropdown.css";
 
 function NotFound() {
   return (
