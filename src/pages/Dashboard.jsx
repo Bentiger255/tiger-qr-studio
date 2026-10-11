@@ -152,13 +152,13 @@ function Dashboard() {
           <div className="dashboard-section-header">
             <div>
               <span className="section-kicker">
-                QUICK CREATE
+                STEP 1 · CHOOSE CONTENT
               </span>
 
-              <h2>What do you want to share?</h2>
+              <h2>What do you want to turn into a QR code?</h2>
 
               <p>
-                Choose a QR type and start building in seconds.
+                Choose a type, add your details, customize the design, then download your QR code.
               </p>
             </div>
 
