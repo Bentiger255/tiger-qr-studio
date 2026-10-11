@@ -1,7 +1,7 @@
+import usePageMeta from "../hooks/usePageMeta";
 import { useMemo, useState } from "react";
 import { BarChart3, CalendarDays, QrCode, TrendingUp } from "lucide-react";
 
-import usePageMeta from "../hooks/usePageMeta";
 function readLibrary() {
   try {
     const value = JSON.parse(localStorage.getItem("tigerQRs") || "[]");
