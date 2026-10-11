@@ -26,7 +26,8 @@ function MobileHeader({ onMenuClick }) {
           type="button"
           className="topbar-icon-button"
           title="Search"
-          aria-label="Search"
+          aria-label="Search saved QR codes"
+          onClick={() => navigate("/my-qr-codes")}
         >
           <Search size={18} />
         </button>
