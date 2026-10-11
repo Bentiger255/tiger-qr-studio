@@ -3,6 +3,7 @@ import { useState } from "react";
 import Sidebar from "./Sidebar";
 import MobileHeader from "./MobileHeader";
 import Footer from "../Footer";
+import PrivacyNotice from "../PrivacyNotice";
 
 function AppShell({ children }) {
   const [sidebarOpen, setSidebarOpen] =
@@ -26,6 +27,8 @@ function AppShell({ children }) {
 
         <Footer />
       </div>
+
+      <PrivacyNotice />
     </div>
   );
 }
