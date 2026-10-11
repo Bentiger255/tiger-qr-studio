@@ -125,9 +125,7 @@ function HowToUse() {
             <h2>Static QR vs Smart QR</h2>
 
             <p>
-              TIGER QR STUDIO can support different types of
-              QR experiences. Understanding the difference
-              helps you choose the right option.
+This version creates static QR codes with information embedded directly in the code. Dynamic destination editing and scan analytics are not available yet.
             </p>
           </div>
 
@@ -171,15 +169,13 @@ function HowToUse() {
               <h3>Smart QR</h3>
 
               <p>
-                The QR points to a web destination. This
-                makes it possible to update the destination
-                later and support features such as analytics.
+Dynamic QR codes can use a hosted redirect to change destinations and measure scans. Those features are not available in this version of Tiger QR Studio.
               </p>
 
               <ul>
                 <li>
                   <Check size={15} />
-                  Update destination
+                  Requires hosted redirect
                 </li>
 
                 <li>
@@ -189,7 +185,7 @@ function HowToUse() {
 
                 <li>
                   <Check size={15} />
-                  Analytics can be added
+                  Requires scan tracking
                 </li>
               </ul>
             </div>
