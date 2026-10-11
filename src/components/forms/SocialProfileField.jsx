@@ -3,33 +3,20 @@ import Dropdown from "../ui/Dropdown";
 import { socialPlatforms } from "../../data/socialPlatforms";
 
 function SocialProfileField({
-  data = {},
-  updateData = () => {},
-  setData,
+  platform = "instagram",
+  username = "",
+  onPlatformChange = () => {},
+  onUsernameChange = () => {},
 }) {
-  const handleUpdate = (field, value) => {
-    if (typeof updateData === "function") {
-      updateData(field, value);
-      return;
-    }
-
-    if (typeof setData === "function") {
-      setData((current) => ({
-        ...current,
-        [field]: value,
-      }));
-    }
-  };
-
-  const platformOptions = socialPlatforms.map((platform) => ({
-    value: platform.value,
-    label: platform.label,
-    description: platform.description,
-    icon: platform.icon || Share2,
+  const platformOptions = socialPlatforms.map((item) => ({
+    value: item.value,
+    label: item.label,
+    description: item.description,
+    icon: item.icon || Share2,
   }));
 
   const selectedPlatform = socialPlatforms.find(
-    (platform) => platform.value === data.socialPlatform
+    (item) => item.value === platform
   );
 
   return (
@@ -37,34 +24,21 @@ function SocialProfileField({
       <div className="form-grid">
         <Dropdown
           label="Platform"
-          value={data.socialPlatform || "instagram"}
+          value={platform}
           options={platformOptions}
-          onChange={(value) =>
-            handleUpdate("socialPlatform", value)
-          }
+          onChange={onPlatformChange}
         />
 
         <div className="form-field">
-          <label htmlFor="socialUsername">
-            Username or Profile URL
-          </label>
-
+          <label htmlFor="socialUsername">Username or Profile URL</label>
           <input
             id="socialUsername"
             type="text"
-            value={data.socialUsername || ""}
-            onChange={(event) =>
-              handleUpdate(
-                "socialUsername",
-                event.target.value
-              )
-            }
-            placeholder={
-              selectedPlatform?.placeholder ||
-              "@username or profile URL"
-            }
+            value={username || ""}
+            onChange={(event) => onUsernameChange(event.target.value)}
+            placeholder={selectedPlatform?.placeholder || "@username or profile URL"}
+            autoComplete="url"
           />
-
           <small className="form-help">
             {selectedPlatform?.example
               ? `Example: ${selectedPlatform.example}`
