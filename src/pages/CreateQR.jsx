@@ -97,7 +97,18 @@ function CreateQR() {
   );
 
   const [data, setData] = useState(initialData);
-  const [settings, setSettings] = useState(initialSettings);
+  const [settings, setSettings] = useState(() => {
+    try {
+      const preferences = JSON.parse(localStorage.getItem("tigerQRSettings") || "{}");
+      return {
+        ...initialSettings,
+        size: preferences.defaultSize || initialSettings.size,
+        level: preferences.defaultLevel || initialSettings.level,
+      };
+    } catch {
+      return initialSettings;
+    }
+  });
 
   const [saved, setSaved] = useState(false);
   const [activeTab, setActiveTab] = useState("form");
@@ -206,12 +217,7 @@ function CreateQR() {
 
     const link = document.createElement("a");
 
-    link.download = `${
-      data.name ||
-      data.restaurantName ||
-      selectedQRType?.value ||
-      "tiger-qr"
-    }.png`;
+    link.download = `${(data.name || data.restaurantName || selectedQRType?.value || JSON.parse(localStorage.getItem("tigerQRSettings") || "{}").downloadName || "tiger-qr").replace(/[<>:"/\\|?*]+/g, "-")}.png`;
 
     link.href = canvas.toDataURL("image/png");
     link.click();
