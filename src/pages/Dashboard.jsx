@@ -1,4 +1,5 @@
 import {
+import usePageMeta from "../hooks/usePageMeta";
   ArrowRight,
   BarChart3,
   Clock3,
@@ -15,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { qrTypes } from "../data/qrTypes";
 
 function Dashboard() {
+  usePageMeta("Dashboard", "Create, customize, save and organize QR codes for personal use and small businesses.");
   const navigate = useNavigate();
 
   let recentQRs;
