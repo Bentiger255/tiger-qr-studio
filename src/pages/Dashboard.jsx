@@ -353,7 +353,7 @@ function Dashboard() {
 
               <div>
                 <BarChart3 size={15} />
-                <span>Track performance</span>
+                <span>Review creation activity</span>
               </div>
             </div>
           </div>
