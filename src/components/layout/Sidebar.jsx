@@ -98,7 +98,6 @@ function Sidebar({ open = false, onClose }) {
         className={`sidebar ${
           open ? "sidebar-open" : ""
         }`}
-        aria-hidden={!open}
       >
         {/* Header */}
         <div className="sidebar-header">
