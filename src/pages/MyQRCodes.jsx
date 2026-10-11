@@ -138,7 +138,7 @@ function MyQRCodes() {
       {selected && (
         <div className="workspace-modal-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) closePreview(); }}>
           <section className="workspace-modal" role="dialog" aria-modal="true" aria-labelledby="qr-preview-title">
-            <button className="workspace-modal-close" onClick={() => setSelected(null)} aria-label="Close preview">×</button>
+            <button className="workspace-modal-close" onClick={closePreview} aria-label="Close preview">×</button>
             <span className="section-kicker">SAVED QR CODE</span>
             <h2 id="qr-preview-title">{selected.name || "Untitled QR code"}</h2>
             <div className="workspace-modal-qr"><QRCodeCanvas value={selected.value || " "} size={240} level={selected.settings?.level || "M"} fgColor={selected.settings?.qrColor || "#111111"} bgColor={selected.settings?.backgroundColor || "#FFFFFF"} includeMargin /></div>
