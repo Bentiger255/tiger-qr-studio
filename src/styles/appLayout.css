@@ -294,3 +294,8 @@
   .how-to-hero h1 { font-size:26px; }
   .footer-actions a, .footer-actions button { padding:0 7px; }
 }
+
+/* Allow the shared footer to sit naturally after short pages. */
+.app-shell-content > .page { min-height: auto; }
+.app-shell-content > .page > main { min-width: 0; }
+.app-shell-content > .page > main:first-child { min-height: 0; }
