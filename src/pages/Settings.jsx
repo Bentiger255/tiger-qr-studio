@@ -1,7 +1,7 @@
+import usePageMeta from "../hooks/usePageMeta";
 import { useRef, useState } from "react";
 import { Download, FileUp, RotateCcw, Trash2 } from "lucide-react";
 
-import usePageMeta from "../hooks/usePageMeta";
 function readLibrary() {
   try {
     const value = JSON.parse(localStorage.getItem("tigerQRs") || "[]");
