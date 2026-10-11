@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { Download, Eye, Search, Trash2 } from "lucide-react";
 import { QRCodeCanvas } from "qrcode.react";
 
+import usePageMeta from "../hooks/usePageMeta";
 function readLibrary() {
   try {
     const value = JSON.parse(localStorage.getItem("tigerQRs") || "[]");
@@ -13,6 +14,7 @@ function readLibrary() {
 }
 
 function MyQRCodes() {
+  usePageMeta("My QR Codes", "Browse, preview, download and manage QR codes saved in this browser.");
   const [codes, setCodes] = useState(readLibrary);
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState("");
