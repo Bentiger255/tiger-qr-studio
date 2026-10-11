@@ -1,4 +1,5 @@
 import {
+import usePageMeta from "../hooks/usePageMeta";
   ArrowLeft,
   ArrowRight,
   Check,
@@ -12,6 +13,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 function HowToUse() {
+  usePageMeta("How to Use", "Learn how to create, customize, download and manage QR codes with Tiger QR Studio.");
   const navigate = useNavigate();
 
   const steps = [
