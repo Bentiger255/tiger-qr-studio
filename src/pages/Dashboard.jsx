@@ -8,7 +8,6 @@ import {
   QrCode,
   ScanLine,
   Smartphone,
-  Sparkles,
   WalletCards,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -134,7 +133,7 @@ function Dashboard() {
           <div className="stat-card stat-card-plan">
             <div className="stat-card-top">
               <div className="stat-icon">
-                <Sparkles size={18} />
+                <WalletCards size={18} />
               </div>
 
               <span className="stat-label">
