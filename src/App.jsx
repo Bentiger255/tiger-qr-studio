@@ -13,6 +13,7 @@ import Templates from "./pages/Templates";
 import Analytics from "./pages/Analytics";
 import Settings from "./pages/Settings";
 import "./styles/workspacePages.css";
+import "./styles/appLayout.css";
 
 function NotFound() {
   return (
